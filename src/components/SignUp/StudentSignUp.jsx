@@ -15,6 +15,8 @@ import LoadingRing from "../../common/LoadingRing";
 const StudentSignUp = () => {
   const SignUp =  "Sign Up";
   const [profile, setProfile] = useState([]);
+
+
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
@@ -25,10 +27,10 @@ const StudentSignUp = () => {
     gapi.load("client:auth2", initClient);
   });
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
+    console.log("it got here")
     setEmail(res.profileObj.email);
    setName(res.profileObj.name);
-
   };
 
   const onFailure = (err) => {
@@ -43,6 +45,9 @@ const StudentSignUp = () => {
     "966153512513-finqplcdnb16vp3kn4la8uik29vdje8k.apps.googleusercontent.com";
     
   const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [school, setSchool] = useState("");
@@ -80,7 +85,7 @@ const StudentSignUp = () => {
       );
       console.log(resp.status);
       if (resp.status === 201) {
-        toast("Registered Successfully");
+        toast("Registered Successfully, Kindly check your email for verification link");
         setTimeout(() => navigate1(), 5000);
       }
 
@@ -120,7 +125,7 @@ const StudentSignUp = () => {
               </label>
               <input
                 required
-                type="text"
+                type="email"
                 className="nameInput placeHolder"
                 placeholder="Enter email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -131,7 +136,7 @@ const StudentSignUp = () => {
               </label>
               <input
                 required
-                type="number"
+                type="text"
                 className="nameInput placeHolder"
                 placeholder="Enter phoneNumber"
                 onChange={(e) => setPhoneNumber(e.target.value)}
@@ -151,7 +156,6 @@ const StudentSignUp = () => {
               <label htmlFor="schoolattended" className="formText">
                 Name of school
               </label>
-              <label htmlFor="schooltaught" className="formText"></label>
               <select
                 required
                 name="drop-down"

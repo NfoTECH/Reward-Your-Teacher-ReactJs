@@ -9,8 +9,10 @@ export default function SuccessModal(props) {
       <div className="modal">
         <img src={success} alt="" />
         <p className="rewardText1">Reward Sent Successfully</p>
-        <p className="innerText">You just sent N{amountSent} to {teacherName}</p>
-        <button  className="Modalbutton" onClick={handleClose}>
+        <p className="innerText">
+          You just sent ₦{amountSent} to {teacherName}
+        </p>
+        <button className="Modalbutton" onClick={handleClose}>
           Done
         </button>
       </div>

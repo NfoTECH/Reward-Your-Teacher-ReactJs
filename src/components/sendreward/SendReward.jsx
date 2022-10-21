@@ -17,7 +17,7 @@ const [modal,setModal] = useState(false);
    const teacherDetails = location.state.teacher;
    const token1 = localStorage.getItem("token");
    const token = "Bearer " + token1.substring(8, token1.length - 1);
-const send = "send";
+const send = "Send";
 
 
   const handleClose = () => {
@@ -72,11 +72,11 @@ const send = "send";
         <div className="bottomDiv">
           <div className="textDiv">
             <div className="loginTextDiv">
-              <p className="LoginText">Fill your details below</p>
+              <p className="LoginText">Fill Your Details Below</p>
             </div>
             <div className="LoginText2Div">
               <label htmlFor="email" className="LoginText2">
-                name
+                Name
               </label>
             </div>
             <input

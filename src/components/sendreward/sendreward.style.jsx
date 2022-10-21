@@ -29,6 +29,8 @@ export const SendRewardStyle = styled.div`
     justify-content: center;
     align-items: center;
     width: 490px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .LoginText {
     width: 206px;
@@ -41,13 +43,14 @@ export const SendRewardStyle = styled.div`
     color: #21334f;
   }
   .LoginText2 {
-    width: 125px;
+    width: 100%;
     height: 15px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 15px;
+    margin-bottom: 2px;
     /* identical to box height */
 
     color: #21334f;
@@ -61,7 +64,9 @@ export const SendRewardStyle = styled.div`
     padding-right: 0px;
     height: 28px;
     margin-bottom: 6px;
-    margin-left: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    /* margin-left: 10px; */
     color: #21334f;
     background: #ffffff;
     border: 1px solid #d9d9d9;
@@ -73,12 +78,14 @@ export const SendRewardStyle = styled.div`
     align-items: center;
     padding: 8px 16px;
     gap: 10px;
+    font-size: 16px;
     border: none;
     width: 30%;
     margin-top: 15px;
     height: 48px;
     color: white;
     background: #55a630;
+    border-radius: 5px 5px;
   }
   .line {
     justify-content: space-evenly;
@@ -171,7 +178,9 @@ export const SendRewardStyle = styled.div`
   .submitButtons {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 500px;
+    /* padding-right: 10px;
+    padding-left: 10px; */
   }
   .submitButton2 {
     display: flex;
@@ -185,11 +194,13 @@ export const SendRewardStyle = styled.div`
     margin-top: 15px;
     height: 48px;
     color: white;
-    background: #4892dc;
+    background: #e5e5e5;
+    margin-right: 0px;
+    border-radius: 5px 5px;
   }
   .backLink {
     text-decoration: none;
-    color: white;
+    color: #21334f;
     margin: 0px;
   }
 `;

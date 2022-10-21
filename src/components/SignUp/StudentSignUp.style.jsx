@@ -169,8 +169,9 @@ export const StudentSignUpStyle = styled.div`
   .submitButton {
     box-sizing: border-box;
     width: 100%;
-    height: 60px;
-    margin-top: 30px;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 5px 5px;
     margin-bottom: 15px;
     left: 0px;
     top: 0px;
@@ -199,5 +200,8 @@ export const StudentSignUpStyle = styled.div`
     justify-content: center;
     align-items: center;
     height: 45px;
+  }
+  .submitButton:hover{
+    background-color: green;
   }
 `;

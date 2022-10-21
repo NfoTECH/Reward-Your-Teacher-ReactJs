@@ -198,6 +198,7 @@ export const ViewTeacherProfileStyle = styled.div`
   .innerImage {
     width: 118px;
     height: 118px;
+    border-radius: 50%;
   }
   .firstText {
     width: 500px;

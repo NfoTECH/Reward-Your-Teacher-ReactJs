@@ -50,7 +50,7 @@ const AppreciateStudent = async () => {
             </div>
           </div>
           <div className="profile-details">
-            <img src={Logo} alt="" />
+            <img src="https://api-private.atlassian.com/users/8f525203adb5093c5954b43a5b6420c2/avatar" alt="" className="studentImage"/>
             <div className="name-and-school">
               <p className="name">{studentName}</p>
               <p className="school">{studentSchool}</p>

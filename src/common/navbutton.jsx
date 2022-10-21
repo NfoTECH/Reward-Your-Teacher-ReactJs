@@ -6,13 +6,13 @@ const Navbutton = [
 },
 {
         id:"2",
-    value:"About Reward your Teacher",
+    value:"About Reward Your Teacher",
     url:"/About"
 
 },
 {
        id:"3",
-    value:"contact",
+    value:"Contact",
     url:"/contact"
 },
 ]

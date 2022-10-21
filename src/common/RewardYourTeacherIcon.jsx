@@ -7,7 +7,7 @@ export default function RewardYourTeacherIcon() {
   return (
 <LogoStyle className='logo'>
              <Link to = '/'><img src={image} alt=""/></Link>
-            <h4 className="logoItem">Reward your teacher</h4>
+            <h4 className="logoItem">Reward Your Teacher</h4>
         </LogoStyle>
   )
 }

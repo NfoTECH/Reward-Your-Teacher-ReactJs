@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   SchoolDiv,
   SchoolDivHeader,
@@ -38,18 +38,70 @@ import { useState } from "react";
 import { useEffect } from "react";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal.jsx";
 import DropDown from "../DropDown/dropdown.jsx";
+import NavBarSideBar from "../../common/NavBarSideBar.jsx";
 
 const Schools = () => {
      const [dropDown, setDropDown] = useState(false);
      const [confirmation, setConfirmation] = useState(false);
+
+  const [schools, setSchools] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [searchKey, setSearchKey] = useState(" ");
+   const searchRef = useRef(" ");
+
     const name = localStorage
       .getItem("first")
       .substring(1, localStorage.getItem("first").length - 1);
-  const getTeachers = (school) => {
-    setChooseSchool(school);
 
-    navigate("/women");
+
+  const showpage = (e) => {
+    e.preventDefault();
+    setPageNumber(e.target.innerText - 1);
   };
+  let pages = [];
+  if (totalPages < 6) {
+    for (let i = 0; i < totalPages - 1; ++i) {
+      pages.push(
+        <a onClick={showpage} key={i}>
+          {i + 1}
+        </a>
+      );
+    }
+  } else {
+    for (let i = 0; i < 6; ++i) {
+      pages.push(
+        <a onClick={showpage} key={i}>
+          {i + 1}
+        </a>
+      );
+    }
+  }
+
+  const lastPageNum = totalPages - 1;
+const nextPage = () => {
+  setPageNumber((prevState) => {
+    if (pageNumber < lastPageNum) {
+      return prevState + 1;
+    }
+  });
+};
+const previousPage = () => {
+  setPageNumber((prevState) => {
+    if (pageNumber > 1) {
+      return prevState - 1;
+    }
+  });
+};
+useEffect(() => {
+  FetchSchools();
+}, [pageNumber, searchKey]);
+const handleChange = (e) => {
+  // const { name, value } = e.target;
+  setSearchKey(searchRef.current.value);
+};
+
+
     const Confirmation = () => {
       setConfirmation(!confirmation);
     };
@@ -78,101 +130,73 @@ const Schools = () => {
 
   return (
     <SideBar>
-      {dropDown && <DropDown confirmation={Confirmation} />}
-      {confirmation && (
-        <LogoutModal logout={logout} confirmation={Confirmation} />
-      )}
-      <div className="topDiv">
-        <RewardYourTeacherIcon />
-        <div
-          className="profileDiv"
-          onClick={() => {
-            setDropDown(!dropDown);
-          }}
-        >
-          <img className="profilePicture" src={profilepicture} alt="" />
-          <p className="profileName">{name}</p>
-        </div>
-      </div>
-      <div className="sideAndBodyDiv">
-        <div className="sideDiv">
-          <div className="OverviewDiv">
-            <img src={overview} alt="" className="overviewImage" />
-            <p className="overviewText">Overview</p>
-          </div>
-          <Link to="/student/schools" className="linkDiv">
-            <div className="schoolDiv">
-              <img src={schoolImage} alt="" className="schoolImageDiv" />
-              <p className="schoolText">Schools</p>
-            </div>
-          </Link>
-          <div className="OverviewDiv">
-            <img src={notification} alt="" className="overviewImage" />
-            <p className="overviewText">Notification</p>
-          </div>
-          <div className="logout">
-            <img src={logout1} alt="" className="overviewImage" />
-            <a className="logoutText" onClick={(e) => logout()}>
-              Logout
-            </a>
-          </div>
-        </div>
-        <div>
-          <SchoolDiv className="teacherListDiv">
-            <SchoolDivHeader>
-              <SchoolDivHeading>All Schools</SchoolDivHeading>
-            </SchoolDivHeader>
-            <SchoolInput>
-              <SchoolInputDiv>
-                <SearchInput
-                  placeholder="Search"
-                  type="text"
-                  // onChange={(e) => setSearchInput(e.target.value)}
-                />
-                <SearchInputIcon>
-                  <AiOutlineSearch />
-                </SearchInputIcon>
-              </SchoolInputDiv>
-              <SchoolFilter>
-                <SchoolFilterText>Filter</SchoolFilterText>
-                <SchoolFilterIcon>
-                  <VscSettings />
-                </SchoolFilterIcon>
-              </SchoolFilter>
-            </SchoolInput>
-            <SchoolList>
-              <SchoolListHeaderDiv>
-                <SchoolListHeader>List of schools</SchoolListHeader>
-              </SchoolListHeaderDiv>
-              <SchoolListItem>
-                {schoolList.map((school) => {
-                  const { id, schoolName } = school;
-                  return (
-                    <SchoolLocation>
-                      <SchoolLocationKey key={id}>
-                        <SchoolLocationItem>{schoolName}</SchoolLocationItem>
-                        <SchoolLocationIcon>
-                          <Link
-                            to="/student/allteachers"
-                            state={{
-                              school: { schoolName },
-                            }}
-                          >
-                            <RiArrowRightSLine />
-                          </Link>
-                        </SchoolLocationIcon>
-                      </SchoolLocationKey>
-                    </SchoolLocation>
-                  );
-                })}
-              </SchoolListItem>
-              <SchoolPage>
-                <Pagination></Pagination>
-              </SchoolPage>
-            </SchoolList>
-          </SchoolDiv>
-        </div>
-      </div>
+      <NavBarSideBar show={true} option="student" />
+      <SchoolDiv className="teacherListDiv">
+        <SchoolDivHeader>
+          <SchoolDivHeading>All Schools</SchoolDivHeading>
+        </SchoolDivHeader>
+        <SchoolInput>
+          <SchoolInputDiv>
+            <SearchInput
+              placeholder="Search"
+              type="text"
+              // onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <SearchInputIcon>
+              <AiOutlineSearch />
+            </SearchInputIcon>
+          </SchoolInputDiv>
+          <SchoolFilter>
+            <SchoolFilterText>Filter</SchoolFilterText>
+            <SchoolFilterIcon>
+              <VscSettings />
+            </SchoolFilterIcon>
+          </SchoolFilter>
+        </SchoolInput>
+        <SchoolList>
+          <SchoolListHeaderDiv>
+            <SchoolListHeader>List of schools</SchoolListHeader>
+          </SchoolListHeaderDiv>
+          <SchoolListItem>
+            {schoolList.map((school) => {
+              const { id, schoolName } = school;
+              return (
+                <SchoolLocation>
+                  <SchoolLocationKey key={id}>
+                    <SchoolLocationItem>{schoolName}</SchoolLocationItem>
+                    <SchoolLocationIcon>
+                      <Link
+                        to="/student/allteachers"
+                        state={{
+                          school: { schoolName },
+                        }}
+                      >
+                        <RiArrowRightSLine />
+                      </Link>
+                    </SchoolLocationIcon>
+                  </SchoolLocationKey>
+                </SchoolLocation>
+              );
+            })}
+            <SchoolLocation className="pagination">
+              <a href="#" onClick={previousPage}>
+                &laquo;
+              </a>
+              {pages}
+              <a>...</a>
+              <a href="#" onClick={() => setPageNumber(lastPageNum)}>
+                Last
+              </a>
+              <a href="#" onClick={nextPage}>
+                &raquo;
+              </a>
+            </SchoolLocation>
+          </SchoolListItem>
+          <SchoolPage>
+            <Pagination></Pagination>
+          </SchoolPage>
+        </SchoolList>
+      </SchoolDiv>
     </SideBar>
   );
 };

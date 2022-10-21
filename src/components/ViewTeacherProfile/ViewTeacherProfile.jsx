@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {ViewTeacherProfileStyle,} from "./ViewTeacherProfile.style";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import profilePics from "../HomePage/images/ProfilePics.png";
 import cancel from "../Modal/FundWalletModal/cancel.png"
 export default function ViewTeacherProfile(props) {
   const{teacher,closeModal} = props;
@@ -13,7 +12,15 @@ export default function ViewTeacherProfile(props) {
   console.log("This is the teacher details" + teacherDetails);
   const token = "Bearer " + token1.substring(8, token1.length - 1);
 
-
+   const profilePics = localStorage.getItem("picture");
+   let url;
+   if (teacherDetails.displayPicture != null) {
+     url = teacherDetails.displayPicture;
+   } else {
+     url =
+       "https://api-private.atlassian.com/users/8f525203adb5093c5954b43a5b6420c2/avatar";
+   }
+   console.log("this is the image url", teacherDetails.displayPicture);
 
   const logout = () => {
     localStorage.removeItem("token-info");
@@ -25,12 +32,21 @@ export default function ViewTeacherProfile(props) {
         <div className="teacherProfileDiv">
           <div className="teacherTopDiv">
             <p className="topDivText">Profile Details</p>
-            <img src={cancel} alt="" className="cancelButton" onClick={closeModal}/>
+            <img
+              src={cancel}
+              alt=""
+              className="cancelButton"
+              onClick={closeModal}
+            />
           </div>
           <div className="teacherProfileDiv2">
             <div className="profileInnerBody1">
               <div className="profileInnerBody2">
-                <img src={profilePics} alt="" className="innerImage" />
+                <img
+                  src={url}
+                  alt=""
+                  className="innerImage"
+                />
                 <div className="detailsDiv">
                   <p className="firstText">{teacherDetails.name}</p>
                   <p className="secondText1">{teacherDetails.school}</p>

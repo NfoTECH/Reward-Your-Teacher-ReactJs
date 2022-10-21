@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const DropDownStyle = styled.div`
+cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -36,5 +37,17 @@ export const DropDownStyle = styled.div`
     line-height: 19px;
 
     color: #21334f;
+  }
+  @media only screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 150px;
+    height: 230px;
+    left: 250px;
+    top: 97px;
+    box-sizing: border-box;
+    position: absolute;
+    background: #ffffff;
   }
 `;

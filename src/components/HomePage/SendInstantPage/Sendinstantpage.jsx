@@ -15,7 +15,7 @@ const nav = () => {
       <div className="textDiv">
         <div className="divText1">
           <h2 className="text1">
-            Send instant <img src={Confetti} alt="party" /> heartfelt rewards to
+            Send instant <img src={Confetti} alt="party" className='party'/> heartfelt rewards to
             your teachers
           </h2>
         </div>
@@ -32,13 +32,13 @@ const nav = () => {
               width="50%"
               background="#80B918"
               color="white"
-              url = "/login"
+              url = "/login"        
             />
           </div>
         </div>
       </div>
       <div className="imageDiv">
-        <img src={image} />
+        <img src={image} className="image"/>
       </div>
     </SendInstantStyle>
   );

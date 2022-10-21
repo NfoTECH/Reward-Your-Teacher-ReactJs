@@ -38,7 +38,5 @@ export const GooglebuttonStyle = styled.div`
     width: 24px;
     height: 24.56px;
   }
+  
 `;
-
-
-

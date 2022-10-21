@@ -147,4 +147,8 @@ export const ViewStudentProfileStyle = styled.div`
     border-radius: 10px;
     height: 350px;
   }
+  .studentImage{
+    width: 80px;
+    border-radius: 50%;
+  }
 `;

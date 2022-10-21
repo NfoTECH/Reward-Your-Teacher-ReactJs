@@ -107,7 +107,9 @@ const TeacherSignUp = () => {
       });
       console.log(resp.status);
       if (resp.status === 201) {
-        toast("Registered Successfully");
+        toast(
+          "Registered Successfully, Kindly check your email for verification link"
+        );
         setTimeout(() => navigate1(), 5000);
       }
 
@@ -133,7 +135,7 @@ const TeacherSignUp = () => {
           <div className="formDiv">
             <div className="secondTopDiv">
               <div>
-                <p className="firstFormText">Update your profile information</p>
+                <p className="firstFormText">Input Your Information</p>
                 <p className="secondFormText">
                   Only you can view and edit your information
                 </p>
@@ -154,14 +156,14 @@ const TeacherSignUp = () => {
               </label>
               <input
                 required
-                type="text"
+                type="email"
                 className="nameInput placeHolder"
                 placeholder="Enter email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
               <label htmlFor="phonenumber" className="formText">
-                Phone number
+                Phone Number
               </label>
               <input
                 required
@@ -185,7 +187,7 @@ const TeacherSignUp = () => {
               />
 
               <label htmlFor="schooltaught" className="formText">
-                School where you taught
+                School Where You Taught
               </label>
               <select
                 required
@@ -239,7 +241,7 @@ const TeacherSignUp = () => {
               </select>
 
               <label htmlFor="yearsofteaching" className="formText">
-                Years of Teaching
+                Years Of Teaching
               </label>
               <input
                 required
@@ -250,7 +252,7 @@ const TeacherSignUp = () => {
                 value={yearsOfTeaching}
               />
               <label htmlFor="subjectstaught" className="formText">
-                Subjects taught
+                Subjects Taught
               </label>
               <input
                 required
@@ -262,7 +264,7 @@ const TeacherSignUp = () => {
               />
 
               <label htmlFor="schooltype" className="formText">
-                School type
+                School Type
               </label>
               <select
                 required
@@ -289,7 +291,7 @@ const TeacherSignUp = () => {
               />
 
               <label htmlFor="nin" className="formText">
-                Upload NIN
+                Upload Profile picture
               </label>
               <input
                 required
@@ -304,7 +306,7 @@ const TeacherSignUp = () => {
                 className="submitButton"
                 IsLoading={loading}
               >
-                   {!loading && SignUp}
+                {!loading && SignUp}
                 {loading && <LoadingRing />}
               </button>
               <GoogleLogin
@@ -316,7 +318,7 @@ const TeacherSignUp = () => {
                 cookiePolicy={"single_host_origin"}
                 isSignedIn={true}
               />
-   
+
               <div></div>
               <ToastContainer />
             </div>

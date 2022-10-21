@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 export const NavbarStyle = styled.div`
-  position: sticky;
+  /* position: sticky; */
   top: 0px;
   background: white;
   max-width: 100%;
@@ -25,7 +25,7 @@ export const NavbarStyle = styled.div`
     font-weight: 400;
     font-size: 16px;
   }
-  .bars {
+  .dropDown{
     display: none;
   }
   .text {
@@ -70,39 +70,71 @@ export const NavbarStyle = styled.div`
     margin: 10px;
     color: #55a630;
   }
-  @media only screen and (max-width: 400px) {
+  .bars {
+    display: none;
+  }
+  @media only screen and (max-width: 450px) {
     padding-top: 2rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    overflow-y: hidden;
+    align-items: center;
+    padding-right: 6px;
+    justify-content: space-between;
     padding-bottom: 1rem;
-
+    padding-left: 2px;
+    overflow-x: hidden;
     .link {
-      display: flex;
-      flex-direction: row;
-      font-weight: 0;
-      font-size: 10px;
-      margin-right: 30px;
-      justify-content: space-around;
+      display: none;
     }
     .bars {
       display: block;
+      display: flex;
+      flex-direction: column;
+    }
+    .dropDown {
+      position: absolute;
+      left: 230px;
+      z-index: 2399;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      top: 100px;
+      background-color: white;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      height: 200px;
+      width: 150px;
+    }
+    .linkdiv {
+      font-weight: 2px;
+      text-decoration: none;
+      justify-content: space-between;
+      color: #012a4a;
+      font-family: "Inter";
+      font-style: normal;
+      margin-left: 5px;
+      margin-right: 20px;
     }
   }
 `;
 
 export const ButtonStyles = styled.button`
+  background-color: #55a630;
   display: flex;
   flex-direction: row;
   justify-content: center;
-
+  border-radius: 5px 5px;
   align-items: center;
   padding: 5px;
   font-weight: 600;
   width: 100px;
   height: 39px;
   border: none;
+  :hover {
+    background: green;
+  }
+
   p {
     width: 43px;
     height: 19px;
@@ -115,13 +147,15 @@ export const ButtonStyles = styled.button`
 
     text-decoration: none;
   }
-  .lineDiv{
+  .lineDiv {
     text-decoration: none;
-   width :100% ;
-   margin: 0;
-   
+    width: 100%;
+    margin: 0;
   }
   .a {
     text-decoration: none;
+  }
+  .a:hover {
+    background: green;
   }
 `;

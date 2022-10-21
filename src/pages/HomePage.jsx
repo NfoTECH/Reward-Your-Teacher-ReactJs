@@ -11,13 +11,13 @@ const HomePage = () =>{
     return(
 <section>
     <Navbar/>
-   <Sendinstantpage/>
+    <Sendinstantpage/>
    <HowItWorks/>
    <SurpriseFunds/>
    <TeachersReward/>
    <Partners/>
   <Footer/>
-  <Outlet/>
+  <Outlet/> 
 </section>
     )
 }

@@ -15,7 +15,7 @@ export const TeacherSignUpStyle = styled.div`
     flex-direction: column;
   }
   .topText {
-    width: 184px;
+    width: 284px;
     height: 22px;
     font-family: "Inter";
     font-style: normal;

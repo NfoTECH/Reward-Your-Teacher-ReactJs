@@ -1,121 +1,18 @@
 import styled from "styled-components";
 
 export const TeacherWalletStyle = styled.div`
-  .topDiv {
-    display: flex;
-    flex-direction: row;
-    /* width: 1440px; */
-    max-width: 100%;
-    height: 96px;
-    left: 0px;
-    top: 0px;
-    background: #ffffff;
-    align-items: center;
-    justify-content: center;
-    justify-content: space-between;
-    padding-left: 32px;
-    padding-right: 75px;
-    box-shadow: 0px 8px 15px -15px #111;
-  }
-  .profilePicture {
-    width: 36px;
-    height: 36px;
-  }
-  .profileDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .profileName {
-    width: 46px;
-    height: 19px;
-
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    margin-left: 10px;
-
-    color: #012a4a;
-  }
-  .sideDiv {
-    width: 20%;
-    left: 0px;
-    top: 0px;
-    box-shadow: 0px 8px 19px -15px #111;
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    padding-bottom: 40px;
-  }
-  .OverviewDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  .overviewText {
-    width: 81px;
-    height: 22px;
-
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    /* identical to box height */
-
-    color: #03435f;
-    margin-left: 15px;
-  }
-  .schoolDiv {
-    margin-left: 20px;
-    width: 170px;
-    padding-left: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background: #55a630;
-    justify-content: start;
-    align-items: center;
-  }
-  .schoolText {
-    width: 70px;
-    height: 22px;
-
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 22px;
-    /* identical to box height */
-
-    color: #ffffff;
-    margin-left: 15px;
-  }
-  .schoolImageDiv {
-    height: 24px;
-    width: 24px;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px;
-  }
-  .OverviewDiv:hover {
-    background: #55a630;
-  }
 
   .sideAndBodyDiv {
     width: 100%;
   }
   .WalletBodydiv {
-    margin-top: -30px;
+    margin-top: -750px;
     width: 1200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 220px;
   }
   .sideAndBodyDiv {
     height: 725px;
@@ -123,7 +20,7 @@ export const TeacherWalletStyle = styled.div`
     display: flex;
   }
   .topWalletTextDiv {
-    margin-left: 205px;
+    margin-left: 250px;
     width: 100%;
   }
   .topWalletText {
@@ -328,7 +225,7 @@ export const TeacherWalletStyle = styled.div`
 
     font-family: "Inter";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 530;
     font-size: 20px;
     line-height: 17px;
 
@@ -336,12 +233,12 @@ export const TeacherWalletStyle = styled.div`
   }
 
   .date {
-    width: 70px;
+    width: 300px;
     height: 17px;
 
     font-family: "Inter";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 14px;
     line-height: 17px;
 
@@ -351,7 +248,7 @@ export const TeacherWalletStyle = styled.div`
   .viewStudent {
     width: 87px;
     height: 17px;
-
+cursor: pointer;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;

@@ -39,6 +39,7 @@ import ViewTeacherProfile from "../ViewTeacherProfile/ViewTeacherProfile.jsx";
 import Items from "../../common/Pagnation.jsx";
 import DropDown from "../DropDown/dropdown.jsx";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal.jsx";
+import NavBarSideBar from "../../common/NavBarSideBar.jsx";
 
 export const AllTeachersInASchool = () => {
    const [dropDown, setDropDown] = useState(false);
@@ -99,49 +100,10 @@ export const AllTeachersInASchool = () => {
 
   return (
     <SideBar>
+      <NavBarSideBar show={true} option = "student"/>
       {showDetails && (
         <ViewTeacherProfile teacher={details} closeModal={CloseModal} />
-      )}
-      {dropDown && <DropDown confirmation={Confirmation} />}
-      {confirmation && (
-        <LogoutModal logout={logout} confirmation={Confirmation} />
-      )}
-      <div className="topDiv">
-        <RewardYourTeacherIcon />
-        <div
-          className="profileDiv"
-          onClick={() => {
-            setDropDown(!dropDown);
-          }}
-        >
-          <img className="profilePicture" src={profilepicture} alt="" 
-          />
-          <p className="profileName">{name}</p>
-        </div>
-      </div>
-      <div className="sideAndBodyDiv">
-        <div className="sideDiv">
-          <div className="OverviewDiv">
-            <img src={overview} alt="" className="overviewImage" />
-            <p className="overviewText">Overview</p>
-          </div>
-          <Link to="/student/schools" className="linkDiv">
-            <div className="schoolDiv">
-              <img src={schoolImage} alt="" className="schoolImageDiv" />
-              <p className="schoolText">Schools</p>
-            </div>
-          </Link>
-          <div className="OverviewDiv">
-            <img src={notification} alt="" className="overviewImage" />
-            <p className="overviewText">Notification</p>
-          </div>
-          <div className="logout">
-            <img src={logout1} alt="" className="overviewImage" />
-            <a className="logoutText" onClick={(e) => logout()}>
-              Logout
-            </a>
-          </div>
-        </div>
+      )}   
         <div className="schoolDivTop">
           <SchoolDiv className="teacherListDiv">
             <SchoolDivHeader>
@@ -174,7 +136,7 @@ export const AllTeachersInASchool = () => {
               </SchoolListHeaderDiv>
               <SchoolListItem>
                 {teacherList.map((teacher) => {
-                  const { id, name, school, yearsOfTeaching, position, about } =
+                  const { id, name, school, yearsOfTeaching, position, about,displayPicture } =
                     teacher;
                   return (
                     <SchoolLocation>
@@ -200,7 +162,7 @@ export const AllTeachersInASchool = () => {
             </SchoolList>
           </SchoolDiv>
         </div>
-      </div>
+      
     </SideBar>
   );
 };

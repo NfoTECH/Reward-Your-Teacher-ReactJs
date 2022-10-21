@@ -11,7 +11,7 @@ export default function LoginOption() {
       <LoginOptionStyle>
         <div className='backgroundDiv'>
           <Buttons
-            text="Teacher Login"
+            text="Login As A Teacher"
             background="#80B918"
             color="white"
             url="/teacher/login"
@@ -19,7 +19,7 @@ export default function LoginOption() {
             height="70px"
           />
           <Buttons
-            text="Student Login"
+            text="Login As A Student"
             background="#80B918"
             color="white"
             url="/student/login"

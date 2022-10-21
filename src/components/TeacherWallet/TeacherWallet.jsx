@@ -12,6 +12,7 @@ import logout1 from "../HomePage/images/Logout.png"
 import DropDown from "../DropDown/dropdown";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import ViewStudentProfile from "../ViewStudentProfile/ViewStudentProfile";
+import NavBarSideBar from "../../common/NavBarSideBar";
 
 export default function TeacherWallet() {
    const [dropDown, setDropDown] = useState(false);
@@ -23,6 +24,12 @@ export default function TeacherWallet() {
    const [studentPhone,setStudentPhone]= useState("");
    const [studentSchool,setStudentSchool]= useState("");
   const [transactionId,setTransactionId] = useState("");
+  function numberWithCommas(x) {
+    if(x > 0){
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+    else return 0;
+  }
+
     const name = localStorage
       .getItem("first")
       .substring(1, localStorage.getItem("first").length - 1);
@@ -41,7 +48,12 @@ export default function TeacherWallet() {
  const ShowModal = () => {
   setStudentProfile(!studentProfile);
  }
- 
+ const overView = () =>{
+  navigate("/teacher/dashboard")
+ }
+ const NotificationPage = () => {
+  navigate("/teacher/notification")
+ }
 
 
 async function FetchWalletBalance() {
@@ -76,7 +88,7 @@ axios.get(`http://localhost:9001/api/v1/wallet/teacher/balance`, {
       console.log(token);
       axios
         .get(
-          `http://localhost:9001/api/v1/transaction/teacher?offset=0&pageSize=10`,
+          `http://localhost:9001/api/v1/transaction/teacher?offset=0&pageSize=4`,
           {
             headers: {
               Authorization: `${token}`,
@@ -99,111 +111,82 @@ axios.get(`http://localhost:9001/api/v1/wallet/teacher/balance`, {
 console.log(wallet);
   return (
     <TeacherWalletStyle>
-      {studentProfile && <ViewStudentProfile 
-      ShowModal = {ShowModal} 
-      studentId = {studentId} 
-      studentEmail={studentEmail}
-      studentName={studentName}
-      studentPhone={studentPhone}
-      studentSchool={studentSchool}
-      transactionId={transactionId}
-      />}
-      {dropDown && <DropDown confirmation={Confirmation} />}
-      {confirmation && (
-        <LogoutModal logout={logout} confirmation={Confirmation} />
+      <NavBarSideBar option="teacher" />
+      {studentProfile && (
+        <ViewStudentProfile
+          ShowModal={ShowModal}
+          studentId={studentId}
+          studentEmail={studentEmail}
+          studentName={studentName}
+          studentPhone={studentPhone}
+          studentSchool={studentSchool}
+          transactionId={transactionId}
+        />
       )}
-      <div className="topDiv">
-        <RewardYourTeacherIcon />
-        <div
-          className="profileDiv"
-          onClick={() => {
-            setDropDown(!dropDown);
-          }}
-        >
-          <img className="profilePicture" src={profilepicture} alt="" />
-          <p className="profileName">{name}</p>
-        </div>
-      </div>
-      <div className="sideAndBodyDiv">
-        <div className="sideDiv">
-          <div className="OverviewDiv">
-            <img src={overview} alt="" className="overviewImage" />
-            <p className="overviewText">Overview</p>
-          </div>
-          <div className="OverviewDiv">
-            <img src={notification} alt="" className="overviewImage" />
-            <p className="overviewText">Notification</p>
-          </div>
 
-          <div className="logout">
-            <img src={logout1} alt="" className="overviewImage" />
-            <a className="logoutText" onClick={(e) => logout()}>
-              Logout
-            </a>
+      <div className="WalletBodydiv">
+        <div className="topWalletTextDiv">
+          <p className="topWalletText">My Dashboard</p>
+        </div>
+        <div className="topWalletDiv">
+          <div className="walletDiv">
+            <div>
+              <p className="walletText">My Wallet</p>
+            </div>
+            <div>
+              <p className="amount">₦{numberWithCommas(wallet)+".00"}</p>
+            </div>
+            <div>
+              <p className="totalMoneyRecieved">Total Money Recieved</p>
+            </div>
+          </div>
+          <div className="Active">
+            <p className="ActiveText">Active</p>
           </div>
         </div>
 
-        <div className="WalletBodydiv">
-          <div className="topWalletTextDiv">
-            <p className="topWalletText">My Dashboard</p>
-          </div>
-          <div className="topWalletDiv">
-            <div className="walletDiv">
+        <div className="maintransactionDiv">
+          <div className="transactionDiv">
+            <div className="Transact">
               <div>
-                <p className="walletText">My Wallet</p>
+                <p className="MostRecent">Most Recent</p>
               </div>
-              <div>
-                <p className="amount">N{wallet}</p>
-              </div>
-              <div>
-                <p className="totalMoneyRecieved">Total Money Recieved</p>
+              <div className="newTextDiv">
+                <p className="new">New</p>
               </div>
             </div>
-            <div className="Active">
-              <p className="ActiveText">Active</p>
-            </div>
-          </div>
 
-          <div className="maintransactionDiv">
-            <div className="transactionDiv">
-              <div className="Transact">
-                <div>
-                  <p className="MostRecent">Most Recent</p>
-                </div>
-                <div className="newTextDiv">
-                  <p className="new">New</p>
-                </div>
-              </div>
-
-              <div className="teacherTransactionDiv">
-                {transaction.map((transactions) => {
-                  return (
-                    <div className="innerTrans">
-                      <div className="Trans">
-                        <p className="description">
-                          {transactions.description}
-                        </p>
-                        <p className="date">{transactions.createdAt}</p>
-                      </div>
-                      
-                      <p className="viewStudent" onClick={()=>{
-                            ShowModal();
-                            setStudentId(transactions.studentId);
-                            setStudentName(transactions.studentName);
-                            setStudentEmail(transactions.studentEmail);
-                            setStudentPhone(transactions.studentPhone);
-                            setStudentSchool(transactions.studentSchool);
-                            setTransactionId(transactions.transactionId);
-                            console.log("i just clicked the view student button", transactions.studentId);
-                      }}>view student</p>
+            <div className="teacherTransactionDiv">
+              {transaction.map((transactions) => {
+                return (
+                  <div className="innerTrans">
+                    <div className="Trans">
+                      <p className="description">{transactions.description}</p>
+                      <p className="date">{transactions.createdAt}</p>
                     </div>
-                  );
-                })}
-              </div>
 
-              <div>
-                <p></p>
-              </div>
+                    <p
+                      className="viewStudent"
+                      onClick={() => {
+                        ShowModal();
+                        setStudentId(transactions.studentId);
+                        setStudentName(transactions.studentName);
+                        setStudentEmail(transactions.studentEmail);
+                        setStudentPhone(transactions.studentPhone);
+                        setStudentSchool(transactions.studentSchool);
+                        setTransactionId(transactions.transactionId);
+                    
+                      }}
+                    >
+                      view student
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div>
+              <p></p>
             </div>
           </div>
         </div>
